@@ -10,6 +10,7 @@ import Image from 'next/image'
 export default function Home() {
   const [value, setValue] = useState('')
   const [isFetching, setIsFetching] = useState(false)
+  const [error, setError] = useState('')
   const [vapourUser, setVapourUser] = useState<VapourPlayer | null>(null)
 
   const handleInputChange = (s: string) => {
@@ -19,18 +20,19 @@ export default function Home() {
   useEffect(() => {
     let timeoutId: NodeJS.Timeout | undefined = undefined
     setIsFetching(false)
+    setError('')
     setVapourUser(null)
 
     if (value !== '' && !timeoutId) {
       timeoutId = setTimeout(async () => {
         try {
-          console.log('Fetching data...')
           setIsFetching(true)
           const response = await fetch('/api/players?id=' + value)
           const data = await response.json()
           setVapourUser(data)
         } catch (error) {
-          console.error('Error fetching data:', error)
+          console.error(error)
+          setError('No account associated with this username')
         } finally {
           setIsFetching(false)
           timeoutId = undefined
@@ -55,7 +57,7 @@ export default function Home() {
           id="username"
           value={value}
           onChange={handleInputChange}
-          hint={isFetching && (
+          hint={error ? error : isFetching && (
             <>
               <Spinner /> Checking names
             </>
