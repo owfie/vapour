@@ -8,6 +8,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   overflow: hidden;
+  color: rgba(255,255,255,0.9);
 
   &:before {
     content: '';
@@ -18,7 +19,7 @@ body {
     height: 100vh;
     background-image:radial-gradient(#8D7CF5, rgba(0,0,0,0) 50%);
     opacity: 0.1;
-    z-index: 0;
+    z-index: -1;
     animation: rotate 20s linear infinite;
   }
 
@@ -31,7 +32,7 @@ body {
     height: 100vh;
     background-image:radial-gradient(#B97CF5, rgba(0,0,0,0) 50%);
     opacity: 0.1;
-    z-index: 0;
+    z-index: -1;
     animation: rotate 20s linear infinite;
     animation-direction: reverse;
   }
@@ -44,4 +45,12 @@ body {
   100% {
     transform: rotate(360deg);
   }
+}
+
+h1 {
+  font-size: 3em;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  margin: 0;
 }

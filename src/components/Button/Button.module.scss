@@ -18,10 +18,18 @@ $primary: #4F39D7;
 
   svg {
     border-radius: 0 0 0 6px;
+    transition: border-radius 0.3s ease-in-out;
     color: $primary;
   }
 
   svg:last-child {
     transform: rotate(180deg);
+  }
+
+  &:hover {
+    svg {
+      border-radius: 0;
+      transition: all 0.3s ease-in-out;
+    }
   }
 }
