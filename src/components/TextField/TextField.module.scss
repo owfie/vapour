@@ -33,4 +33,13 @@ $subtle: rgba(255,255,255,0.4);
   &.active {
     background-color: red;
   }
+
+  .hint {
+    position: absolute;
+    z-index: 1;
+    top: 110%;
+    left: 0;
+    color: $subtle;
+    font-size: 0.8em;
+  }
 }

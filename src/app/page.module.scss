@@ -10,3 +10,26 @@ main.main {
     width: 300px;
   }
 }
+
+.btnIcon {
+  border-radius: 50px;
+}
+
+.Spinner {
+  animation: rotate 1s linear infinite;
+  margin-right: 0.5em;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.Arrow {
+  width: 16px;
+  height: 16px;
+}

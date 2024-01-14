@@ -60,6 +60,7 @@ export type VapourPlayer = {
   username: string
   profileUrl: string
   avatar: string
+  avatarSmall: string
 }
 
 export type VapourGame = {
@@ -100,7 +101,8 @@ export const getPlayerSummaryFromSteamId = async (steamId: string, apiKey: strin
   return {
     username: data.personaname,
     profileUrl: data.profileurl,
-    avatar: data.avatarfull
+    avatar: data.avatarfull,
+    avatarSmall: data.avatarmedium
   }
 }
 

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import styles from './TextField.module.scss'
 import { useState } from "react"
 
@@ -6,10 +6,11 @@ interface ITextField {
   id: string
   value?: string
   onChange?: (value: string) => void
+  hint?: React.ReactNode
 }
 
 export const TextField: React.FC<ITextField> = (props) => {
-  const { id, onChange, value } = props
+  const { id, onChange, value, hint } = props
 
   const [isFocused, setIsFocused] = useState(false)
 
@@ -50,5 +51,31 @@ export const TextField: React.FC<ITextField> = (props) => {
         </motion.label>
       )
     }
+    <AnimatePresence>
+    {
+      hint && (
+        <motion.div
+          className={styles.hint}
+          initial={{
+            opacity: 0,
+            y: 5
+          }}
+          animate={{
+            opacity: 1,
+            y: 0
+          }}
+          exit={{
+            opacity: 0,
+            y: -5
+          }}
+          transition={{
+            duration: 0.4
+          }}
+        >
+          {hint}
+        </motion.div>
+      )
+    }
+    </AnimatePresence>
   </motion.div>
 }

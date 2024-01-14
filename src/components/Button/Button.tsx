@@ -8,6 +8,7 @@ interface IButton extends HTMLAttributes<HTMLButtonElement>{
   variant?: 'primary' | 'secondary'
   onClick: () => void
   stretch?: boolean
+  disabled?: boolean
 }
 
 export const Button: React.FC<IButton> = (props) => {
@@ -16,19 +17,22 @@ export const Button: React.FC<IButton> = (props) => {
     children,
     onClick,
     stretch = false,
+    disabled = false
   } = props
 
   const buttonClasses = `
     ${styles.Button}
     ${styles[variant]}
     ${stretch ? styles.stretch : ''}
+    ${disabled ? styles.disabled : ''}
   `
 
   return (
     <motion.button
       className={buttonClasses}
-      onClick={onClick}
-      whileTap={{ scale: 0.95 }}
+      disabled={disabled}
+      onClick={!disabled ? onClick : undefined}
+      whileTap={!disabled ? { scale: 0.95 } : {}}
     >
       <ButtonEdge />
       <div className={styles.content}>

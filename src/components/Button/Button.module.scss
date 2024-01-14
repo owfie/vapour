@@ -10,19 +10,20 @@ $primary: #4F39D7;
   .content {
     background-color: $primary;
     display: flex;
+    gap: 0.5em;
     align-items: center;
     justify-content: center;
     color: white;
 
   }
 
-  svg {
+  > svg {
     border-radius: 0 0 0 6px;
     transition: border-radius 0.3s ease-in-out;
     color: $primary;
   }
 
-  svg:last-child {
+  > svg:last-child {
     transform: rotate(180deg);
   }
 
@@ -40,7 +41,7 @@ $primary: #4F39D7;
       border-bottom: 1px solid grey;
     }
 
-    svg {
+    > svg {
       color: transparent;
 
       path {
@@ -55,5 +56,10 @@ $primary: #4F39D7;
     .content {
       flex-grow: 1;
     }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 }
