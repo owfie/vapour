@@ -1,2 +1,47 @@
 body {
+  all: unset;
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  background-image: linear-gradient(to bottom, #23253C, #151620);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-image:radial-gradient(#8D7CF5, rgba(0,0,0,0) 50%);
+    opacity: 0.1;
+    z-index: 0;
+    animation: rotate 20s linear infinite;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 100vw;
+    height: 100vh;
+    background-image:radial-gradient(#B97CF5, rgba(0,0,0,0) 50%);
+    opacity: 0.1;
+    z-index: 0;
+    animation: rotate 20s linear infinite;
+    animation-direction: reverse;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

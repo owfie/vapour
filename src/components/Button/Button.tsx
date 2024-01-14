@@ -5,19 +5,21 @@ import styles from './Button.module.scss'
 import { motion } from "framer-motion"
 
 interface IButton extends HTMLAttributes<HTMLButtonElement>{
-  type?: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary'
+  onClick: () => void
 }
 
-export const Button = (props) => {
+export const Button: React.FC<IButton> = (props) => {
   const {
-    type = 'primary',
-    children
+    variant = 'primary',
+    children,
+    onClick
   } = props
 
   return (
     <motion.button
       className={styles.Button}
-      {...props}
+      onClick={onClick}
       whileTap={{ scale: 0.95 }}
     >
       <ButtonEdge />

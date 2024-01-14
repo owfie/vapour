@@ -29,7 +29,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={HelveticaNowDisplay.className}>{children}</body>
+      <body className={HelveticaNowDisplay.className}>
+        {children}
+      </body>
     </html>
   )
 }

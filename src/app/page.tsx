@@ -1,4 +1,4 @@
-import { Button } from '@/components'
+import { Button, Pane } from '@/components'
 import styles from './page.module.scss'
 
 export default function Home() {
@@ -7,6 +7,9 @@ export default function Home() {
     <Button>
       Test button
     </Button>
+    <Pane>
+      Example content
+    </Pane>
     </main>
   )
 }
