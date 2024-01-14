@@ -1,5 +1,8 @@
+'use client'
+
 import { HTMLAttributes } from "react"
 import styles from './Button.module.scss'
+import { motion } from "framer-motion"
 
 interface IButton extends HTMLAttributes<HTMLButtonElement>{
   type?: 'primary' | 'secondary'
@@ -12,13 +15,17 @@ export const Button = (props) => {
   } = props
 
   return (
-    <button className={styles.Button} {...props}>
+    <motion.button
+      className={styles.Button}
+      {...props}
+      whileTap={{ scale: 0.95 }}
+    >
       <ButtonEdge />
       <div className={styles.content}>
         {children}
       </div>
       <ButtonEdge />
-    </button>
+    </motion.button>
   )
 }
 
