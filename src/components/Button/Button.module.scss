@@ -1,0 +1,26 @@
+$primary: #4F39D7;
+
+.Button {
+  all: unset;
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+  cursor: pointer;
+
+  .content {
+    background-color: $primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  svg {
+    border-radius: 0 0 0 6px;
+    color: $primary;
+  }
+
+  svg:last-child {
+    transform: rotate(180deg);
+  }
+}
