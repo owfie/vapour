@@ -1,8 +1,21 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
 import "@/styles/globals.scss"
+import localFont from 'next/font/local'
 
-const inter = Inter({ subsets: ["latin"] })
+const HelveticaNowDisplay = localFont({
+  src: [
+    {
+      path: '../assets/HelveticaNowDisplay.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../assets/HelveticaNowDisplay-Bold.woff2',
+      weight: '500',
+      style: 'normal',
+    }
+  ],
+})
 
 export const metadata: Metadata = {
   title: "Vapour",
@@ -16,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={HelveticaNowDisplay.className}>{children}</body>
     </html>
   )
 }
