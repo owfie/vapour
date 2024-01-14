@@ -32,4 +32,28 @@ $primary: #4F39D7;
       transition: all 0.3s ease-in-out;
     }
   }
+
+  &.secondary {
+    .content {
+      background-color: transparent;
+      border-top: 1px solid grey;
+      border-bottom: 1px solid grey;
+    }
+
+    svg {
+      color: transparent;
+
+      path {
+        stroke: grey;
+      }
+    }
+  }
+
+  &.stretch {
+    width: 100%;
+
+    .content {
+      flex-grow: 1;
+    }
+  }
 }

@@ -7,18 +7,26 @@ import { motion } from "framer-motion"
 interface IButton extends HTMLAttributes<HTMLButtonElement>{
   variant?: 'primary' | 'secondary'
   onClick: () => void
+  stretch?: boolean
 }
 
 export const Button: React.FC<IButton> = (props) => {
   const {
     variant = 'primary',
     children,
-    onClick
+    onClick,
+    stretch = false,
   } = props
+
+  const buttonClasses = `
+    ${styles.Button}
+    ${styles[variant]}
+    ${stretch ? styles.stretch : ''}
+  `
 
   return (
     <motion.button
-      className={styles.Button}
+      className={buttonClasses}
       onClick={onClick}
       whileTap={{ scale: 0.95 }}
     >

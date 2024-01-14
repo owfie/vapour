@@ -1,0 +1,19 @@
+.Pane {
+  padding: 24px;
+  width: max-content;
+  position: relative;
+  box-sizing: border-box;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  background-color: rgba(33, 37, 60, 0.3);
+  border-radius: 8px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #282A40;
+
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+}
