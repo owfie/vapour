@@ -18,7 +18,6 @@ export async function GET(request: NextRequest) {
     })
   }
 
-  // TODO: Un-fuck this mess
   try {
     const id = new SteamID(steamId)
     if (!id.isValidIndividual()) throw new Error('SteamID is not an individual account')
