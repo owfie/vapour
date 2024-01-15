@@ -4,7 +4,7 @@ import { Button, Pane, TextField } from '@/components'
 import styles from './page.module.scss'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { VapourPlayer } from '@/utils/SteamMethods'
+import { VapourPlayer, extractSteamId } from '@/utils/SteamMethods'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
@@ -65,12 +65,12 @@ export default function Home() {
             </>
           )}
         />
-
         <Button
           stretch
           disabled={!vapourUser}
           handleClick={() => {
-            router.push(`/${value}`)
+            if (!vapourUser) return
+            router.push(`/${extractSteamId(vapourUser.profileUrl)}`)
           }}
         >
           { vapourUser && <Image className={styles.btnIcon} width={32} height={32} src={vapourUser.avatarSmall} alt={`${vapourUser.username}'s profile picture`}/>}

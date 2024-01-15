@@ -78,6 +78,17 @@ export type VapourSummary = {
   favouriteGame: number
 }
 
+export const extractSteamId = (url: string): string | null => {
+    const matches = url.match(/\/([^\/]+)\/$/);
+
+    if (matches && matches.length >= 2) {
+        return matches[1];
+    } else {
+        return null;
+    }
+}
+
+
 export const generateSteamRequestURL = (method: SteamMethod, key: string, id: string) => {
   return `https://api.steampowered.com/${method}?key=${key}&${steamSearchParamMap[method]}=${id}${method===SteamMethod.GetOwnedGames ? '&include_appinfo=true&include_played_free_games=true' : ''}`
 }
