@@ -6,12 +6,14 @@ import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { VapourPlayer } from '@/utils/SteamMethods'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
   const [value, setValue] = useState('')
   const [isFetching, setIsFetching] = useState(false)
   const [error, setError] = useState('')
   const [vapourUser, setVapourUser] = useState<VapourPlayer | null>(null)
+  const router = useRouter()
 
   const handleInputChange = (s: string) => {
     setValue(s)
@@ -67,8 +69,8 @@ export default function Home() {
         <Button
           stretch
           disabled={!vapourUser}
-          onClick={() => {
-            console.log('test')
+          handleClick={() => {
+            router.push(`/${value}`)
           }}
         >
           { vapourUser && <Image className={styles.btnIcon} width={32} height={32} src={vapourUser.avatarSmall} alt={`${vapourUser.username}'s profile picture`}/>}

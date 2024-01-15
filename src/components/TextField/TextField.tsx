@@ -1,3 +1,5 @@
+'use client'
+
 import { AnimatePresence, motion } from "framer-motion"
 import styles from './TextField.module.scss'
 import { useState } from "react"

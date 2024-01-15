@@ -36,14 +36,10 @@ export async function GET(request: NextRequest) {
         status: 200
       })
     } catch (error) {
-      return new NextResponse(error.message, {
+      return new NextResponse(error instanceof Error ? error?.message : 'Invalid request', {
         status: 400
       })
     }
-
-    return new NextResponse(error.message, {
-      status: 400
-    })
   }
 
   const data = await getPlayerSummaryFromSteamId(steamId, apiKey)

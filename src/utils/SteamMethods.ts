@@ -18,7 +18,8 @@ type GamesResponse = {
     games: {
       appid: number
       name: string
-      icon: string
+      img_icon_url: string
+      img_logo_url: string
       playtime_forever: number
       playtime_windows_forever: number
       playtime_mac_forever: number
@@ -109,17 +110,17 @@ export const getPlayerSummaryFromSteamId = async (steamId: string, apiKey: strin
 export const getOwnedGamesFromSteamId = async (steamId: string, apiKey: string): Promise<VapourSummary> => {
   const url = generateSteamRequestURL(SteamMethod.GetOwnedGames, apiKey, steamId)
   const res = await fetch(url)
-  const data = (await res.json() as GamesResponse).response // rework this
+  const data = (await res.json() as GamesResponse).response
 
   return {
-    totalGames: data.game_count,
-    totalPlaytime: data.games.reduce((acc, game) => acc + game.playtime_forever, 0),
-    favouriteGame: data.games.reduce((acc, game) => game.playtime_forever > acc.playtime_forever ? game : acc).appid,
-    games: data.games.map(game => ({
+    totalGames: data.game_count || 0,
+    totalPlaytime: data.games?.reduce((acc, game) => acc + game.playtime_forever, 0) || 0,
+    favouriteGame: data.games?.reduce((acc, game) => game.playtime_forever > acc.playtime_forever ? game : acc).appid,
+    games: data.games?.map(game => ({
       id: game.appid,
       name: game.name,
       playtime: game.playtime_forever,
-      icon: game.icon
-    }))
+      icon: `https://media.steampowered.com/steamcommunity/public/images/apps/${game.appid}/${game.img_icon_url}.jpg`
+    })).sort((a, b) => b.playtime - a.playtime) || []
   }
 }

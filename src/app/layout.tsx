@@ -30,7 +30,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={HelveticaNowDisplay.className}>
-        {children}
+        <div className={'container'}>
+          {children}
+        </div>
       </body>
     </html>
   )

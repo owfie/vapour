@@ -1,39 +1,43 @@
 body {
   all: unset;
   width: 100vw;
-  height: 100dvh;
+  height: auto;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   background-image: linear-gradient(to bottom, #23253C, #151620);
   margin: 0;
-  padding: 0;
   box-sizing: border-box;
   overflow: hidden;
+  overflow-y: scroll;
   color: rgba(255,255,255,0.9);
 
   &:before {
     content: '';
     left: 50%;
     top: 50%;
-    position: absolute;
+    position: fixed;
     width: 100vw;
     height: 100vh;
     background-image:radial-gradient(#8D7CF5, rgba(0,0,0,0) 50%);
-    opacity: 0.1;
+    opacity: 0.3;
     z-index: -1;
     animation: rotate 20s linear infinite;
+    animation: stretch 17s linear infinite;
   }
 
   &:after {
     content: '';
-    position: absolute;
+    position: fixed;
     top: -50%;
     left: -50%;
     width: 100vw;
     height: 100vh;
     background-image:radial-gradient(#B97CF5, rgba(0,0,0,0) 50%);
-    opacity: 0.1;
+    opacity: 0.2;
     z-index: -1;
     animation: rotate 20s linear infinite;
+    animation: stretch 15s linear infinite;
     animation-direction: reverse;
   }
 }
@@ -47,10 +51,34 @@ body {
   }
 }
 
+@keyframes stretch {
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(1.8);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
 h1 {
   font-size: 3em;
 }
 
 h1,h2,h3,h4,h5,h6 {
   margin: 0;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 50px;
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box;
+  padding: 25px;
 }

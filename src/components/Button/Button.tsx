@@ -1,4 +1,4 @@
-'use client'
+`use client`
 
 import { HTMLAttributes } from "react"
 import styles from './Button.module.scss'
@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 
 interface IButton extends HTMLAttributes<HTMLButtonElement>{
   variant?: 'primary' | 'secondary'
-  onClick: () => void
+  handleClick: () => void
   stretch?: boolean
   disabled?: boolean
 }
@@ -15,7 +15,7 @@ export const Button: React.FC<IButton> = (props) => {
   const {
     variant = 'primary',
     children,
-    onClick,
+    handleClick,
     stretch = false,
     disabled = false
   } = props
@@ -31,7 +31,7 @@ export const Button: React.FC<IButton> = (props) => {
     <motion.button
       className={buttonClasses}
       disabled={disabled}
-      onClick={!disabled ? onClick : undefined}
+      onClick={!disabled ? handleClick : undefined}
       whileTap={!disabled ? { scale: 0.95 } : {}}
     >
       <ButtonEdge />
