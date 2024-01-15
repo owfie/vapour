@@ -7,6 +7,7 @@ import Image from 'next/image'
 import styles from './Profile.module.scss'
 import { motion } from "framer-motion"
 import Arrow from '@/assets/icons/Arrow.svg'
+import { useEffect, useState } from "react"
 
 const containerVariants = {
   hidden: {
@@ -36,6 +37,8 @@ export const Profile = ({ profile, games }: {
   games: VapourSummary
 }) => {
   const router = useRouter()
+  const [limit, setLimit] = useState(10)
+
   return <>
     <nav>
       <Button handleClick={() => {
@@ -69,16 +72,23 @@ export const Profile = ({ profile, games }: {
         </div>
       </div>
       <motion.div className={styles.content} variants={containerVariants} initial="hidden" animate="visible">
-        {games.games?.slice(0, 10)
-          .map((game, i) => {
+        {games.games?.slice(0, limit).map((game, i) => {
             return <Pane variants={itemVariants} className={`${styles.game} ${game.id === games.favouriteGame ? styles.favourite : ''}`} key={`game-${i}`}>
-            <Image priority className={styles.gameImage} width={64} height={64} alt={`${game.name}'s avatar`} src={game.icon}/>
+            {!!game.icon && <Image priority className={styles.gameImage} width={64} height={64} alt={`${game.name}'s avatar`} src={game.icon }/>}
             <div className={styles.gameInfo}>
               <b>{game.name}</b>
               <span className={styles.subtle}>{Math.floor(game.playtime / 60)} hours</span>
             </div>
           </Pane>
         })}
+        {
+          limit < games.totalGames && (
+          <Button handleClick={() => {
+            setLimit(Math.min(limit+10, games.totalGames))
+          }}>
+            See more ({limit}/{games.totalGames})
+          </Button>
+        )}
       </motion.div>
     </main>
   </>

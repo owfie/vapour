@@ -68,7 +68,7 @@ export type VapourGame = {
   id: number
   name: string
   playtime: number
-  icon: string
+  icon?: string
 }
 
 export type VapourSummary = {
@@ -131,7 +131,7 @@ export const getOwnedGamesFromSteamId = async (steamId: string, apiKey: string):
       id: game.appid,
       name: game.name,
       playtime: game.playtime_forever,
-      icon: `https://media.steampowered.com/steamcommunity/public/images/apps/${game.appid}/${game.img_icon_url}.jpg`
+      icon: !!game.img_icon_url ? `https://media.steampowered.com/steamcommunity/public/images/apps/${game.appid}/${game.img_icon_url}.jpg` : undefined
     })).sort((a, b) => b.playtime - a.playtime) || []
   }
 }

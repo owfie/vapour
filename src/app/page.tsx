@@ -13,7 +13,6 @@ export default function Home() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const redirError = searchParams.get('error')
-  router.replace('/')
 
   const [value, setValue] = useState('')
   const [isFetching, setIsFetching] = useState(false)
@@ -23,6 +22,10 @@ export default function Home() {
   const handleInputChange = (s: string) => {
     setValue(s)
   }
+
+  useEffect(() => {
+    router.replace('/')
+  })
 
   useEffect(() => {
     if (!value && !!error) return
