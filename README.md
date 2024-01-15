@@ -15,4 +15,10 @@ npm install
 npm run dev
 ```
 
+To run the test suite, run:
+
+```bash
+npm run test
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result locally or visit [the live demo](https://vapour-gg.vercel.app).
