@@ -11,6 +11,7 @@ body {
   overflow: hidden;
   overflow-y: scroll;
   color: rgba(255,255,255,0.9);
+  position: relative;
 
   &:before {
     content: '';
@@ -74,6 +75,7 @@ h1,h2,h3,h4,h5,h6 {
 .container {
   min-height: 100vh;
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   gap: 50px;
@@ -81,4 +83,14 @@ h1,h2,h3,h4,h5,h6 {
   max-width: 800px;
   box-sizing: border-box;
   padding: 25px;
+}
+
+.blueprint {
+  z-index: -1;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  scale: 2;
+  transform: translate(-25%, -40%);
+  opacity: 0.3;
 }

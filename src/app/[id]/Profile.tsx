@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import Image from 'next/image'
 import styles from './Profile.module.scss'
 import { motion } from "framer-motion"
+import Arrow from '@/assets/icons/Arrow.svg'
 
 const containerVariants = {
   hidden: {
@@ -39,7 +40,10 @@ export const Profile = ({ profile, games }: {
     <nav>
       <Button handleClick={() => {
         router.push('/')
-      }}>Back</Button>
+      }}>
+        <Arrow style={{rotate: '180deg'}}/>
+        Back
+      </Button>
     </nav>
     <main className={styles.Profile}>
       <div className={styles.header}>

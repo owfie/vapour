@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import "@/styles/globals.scss"
 import localFont from 'next/font/local'
+import Blueprint from "@/assets/icons/Blueprint.svg"
 
 const HelveticaNowDisplay = localFont({
   src: [
@@ -31,6 +32,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={HelveticaNowDisplay.className}>
         <div className={'container'}>
+          <Blueprint className="blueprint"/>
           {children}
         </div>
       </body>

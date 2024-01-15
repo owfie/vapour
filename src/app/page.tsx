@@ -2,7 +2,8 @@
 
 import { Button, Pane, TextField } from '@/components'
 import styles from './page.module.scss'
-import { motion } from 'framer-motion'
+import Spinner from '@/assets/icons/Spinner.svg'
+import Arrow from '@/assets/icons/Arrow.svg'
 import { useEffect, useState } from 'react'
 import { VapourPlayer, extractSteamId } from '@/utils/SteamMethods'
 import Image from 'next/image'
@@ -12,7 +13,7 @@ export default function Home() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const redirError = searchParams.get('error')
-  // window.history.replaceState(null, '', '/')
+  router.replace('/')
 
   const [value, setValue] = useState('')
   const [isFetching, setIsFetching] = useState(false)
@@ -50,13 +51,13 @@ export default function Home() {
     return () => {
       clearTimeout(timeoutId)
     }}
-  }, [value])
+  }, [value, error])
 
   return (
     <main className={styles.main}>
       <div>
         <h1>Vapour.gg</h1>
-        <h3>Unleash your Steam library.</h3>
+        <h3><span className={styles.Prominent}>Unleash</span> your Steam library.</h3>
       </div>
       <Pane
         className={styles.box}
@@ -67,7 +68,7 @@ export default function Home() {
           onChange={handleInputChange}
           hint={!!error ? error : isFetching && (
             <>
-              <Spinner /> Checking names
+              <Spinner className={styles.Spinner}/> Checking names
             </>
           )}
         />
@@ -81,17 +82,9 @@ export default function Home() {
         >
           { vapourUser && <Image className={styles.btnIcon} width={32} height={32} src={vapourUser.avatarSmall} alt={`${vapourUser.username}'s profile picture`}/>}
           { vapourUser ? vapourUser.username : 'Search user' }
-          <Arrow />
+          <Arrow className={styles.Arrow}/>
         </Button>
       </Pane>
     </main>
   )
 }
-
-const Spinner = () => <motion.svg className={styles.Spinner} width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M4.17764 0.505188C5.99679 0.505188 7.4715 1.9799 7.4715 3.79904C7.4715 5.61819 5.99679 7.0929 4.17764 7.0929C2.3585 7.0929 0.883789 5.61819 0.883789 3.79904" stroke="currentColor" strokeOpacity="0.8"/>
-</motion.svg>
-
-const Arrow = () => <svg className={styles.Arrow} width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path opacity="0.7" d="M4.69718 7.35689L4.05797 6.72479L6.27743 4.50533H0.702148V3.58203H6.27743L4.05797 1.36612L4.69718 0.730469L8.01039 4.04368L4.69718 7.35689Z" fill="currentColor"/>
-</svg>
