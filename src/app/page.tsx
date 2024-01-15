@@ -6,20 +6,26 @@ import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { VapourPlayer, extractSteamId } from '@/utils/SteamMethods'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 export default function Home() {
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const redirError = searchParams.get('error')
+  // window.history.replaceState(null, '', '/')
+
   const [value, setValue] = useState('')
   const [isFetching, setIsFetching] = useState(false)
-  const [error, setError] = useState('')
+  const [error, setError] = useState(redirError ? 'Something went wrong. Try another user?' : '')
   const [vapourUser, setVapourUser] = useState<VapourPlayer | null>(null)
-  const router = useRouter()
 
   const handleInputChange = (s: string) => {
     setValue(s)
   }
 
   useEffect(() => {
+    if (!value && !!error) return
+
     let timeoutId: NodeJS.Timeout | undefined = undefined
     setIsFetching(false)
     setError('')
@@ -59,7 +65,7 @@ export default function Home() {
           id="username"
           value={value}
           onChange={handleInputChange}
-          hint={error ? error : isFetching && (
+          hint={!!error ? error : isFetching && (
             <>
               <Spinner /> Checking names
             </>
